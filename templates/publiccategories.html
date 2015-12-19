@@ -1,0 +1,54 @@
+<!-- I'm borrowing the trick of extending main.html to avoid writing 
+     css header code again and again. -->
+
+{% extends "publicMain.html" %}
+{% block content %}
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    
+    <ul>
+        {% for message in messages %}
+        <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    
+</div>
+
+<div class="container">
+    
+    <div class="colCat">
+
+        <h1> Categories </h1>
+        {% for c in cats %}
+        <div class = "item">
+            <a href = "{{url_for('showCategory', category_name = c.name)}}">
+            {{ c.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class = "columnDivider"></div>
+
+    <div class="colCat">
+        <h1> Latest Items </h1>
+        
+        {% for i in items %}
+            <div class = "item">
+                <a href = "{{url_for('showItem', category_name =
+                    i.category_name, item_name = i.name)}}">{{ i.name }}</a>
+                
+                <div class="itemCat">
+                    ({{i.category_name}})
+                </div>
+            </div>
+            {% endfor %}
+    
+    </div>
+</div>
+
+{% endblock %}

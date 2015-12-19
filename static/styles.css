@@ -1,0 +1,89 @@
+* {
+    font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+body    {   width: 600px;
+            margin: 0 auto    }
+
+
+h1              { font-family: "Helvetica Neue Light",
+                    Roboto, Helvetica, Arial, sans-serif;
+                    border-bottom: 2px solid #eee;
+                    }
+
+h2              { font-size: 1.2em; }
+
+p, dd, dt               { color: #7B7573;}
+
+a {text-decoration: none; color: #0093B9; font-size: .75em;}
+
+.itemCat {font-size: .75em; display:inline; font-style:italic}
+
+
+.header         { vertical-align:center;
+                  background:#F0F0F0;
+                  border:1px solid #CCC;
+                  width:600px;
+    margin:0px auto;
+    overflow:auto;
+    padding:5px 10px 10px 5px;
+
+    }
+
+.rightButton    {
+    float:right;
+    font-size: 125%;
+    display:inline-block;
+    cursor : pointer;
+    border-style : solid;
+    border-width : 1px;
+    border-radius : 50px;
+    padding : 10px 18px;
+    box-shadow : 0 1px 4px rgba(0,0,0,.6);
+    font-weight : bold;
+    color : #fff;
+    text-align:right;
+}
+
+.name {width:50%;display: inline-block; float: left;}
+
+.description {}
+
+.price {text-align: right; width:50%; float: right; }
+
+.editdeletepane{}
+
+
+.flash          { background: #cee5F5; }
+
+.error          { background: #f0d6d6; padding: 0.5em; }
+
+.form-control   { display:block;
+                  margin-top: 1em;
+                  margin-bottom: 1em;}
+
+.container{
+    width:100%;
+}
+
+.colCat{
+    float:left;
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.columnDivider {
+    border-left:1px solid #38546d;
+    border-right:1px solid #16222c;
+}
+
+.addItem{font-size:large;
+        padding-top : 10px;}
+
+.login{    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+padding-top : 30px;}

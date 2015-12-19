@@ -1,0 +1,14 @@
+{% extends "privateMain.html" %}
+{% block content %}
+
+<h1> {{item.name}} </h1>
+Description: {{item.description}}
+
+<div class = "container">
+<a href='{{url_for('editItem',item_name = item.name) }}'>
+    Edit</a>
+    |
+<a href='{{url_for('deleteItem',item_name = item.name) }}'>
+    Delete</a>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "privateMain.html" %}
+{% block content %}
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    
+    <ul>
+        {% for message in messages %}
+        <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    
+</div>
+
+<h1>Add Item  </h1>
+
+<form method = "post">
+    
+    <label for="name">Name</label>
+    <input type ="text" maxlength="100" class="form-control" name="name">
+        
+    <label for="description">Description</label>
+    <textarea class="form-control" maxlength="250" rows="3"
+        name="description"></textarea>
+        
+        <label for="name">Category</label>
+        <input type ="text" maxlength="100"
+            class="form-control" name="category_name">
+    
+    <button type="submit" class="btn-default" id="submit" type="submit">Submit</button>
+</form
+        
+{% endblock %}

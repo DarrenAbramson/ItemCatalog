@@ -1,0 +1,21 @@
+{% extends "privateMain.html" %}
+{% block content %}
+<h1> Delete Item </h1>
+
+Are you sure you want to delete {{item.name}}?
+
+<form method = 'post'>
+<button type="submit" class="btn btn-default delete" id="submit" type="submit">
+<span class="glyphicon glyphicon-trash" aria-hidden="true">
+</span> Delete</button>
+
+<!-- if user clicks cancel, return them to the front page. -->
+<a href = '{{url_for('showCatsAndItems')}}'>
+<button class="btn btn-default delete">
+<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+Cancel</button>
+</a>
+    
+</form>
+
+{% endblock %}

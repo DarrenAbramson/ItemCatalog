@@ -1,0 +1,31 @@
+{% extends "publicMain.html" %}
+{% block content %}
+
+
+<div class="container">
+
+    <div class="colCat">
+        <h1> Categories </h1>
+    
+            {% for c in cats %}
+                <div class = "item">
+                <a href = "{{url_for('showCategory', category_name = c.name)}}">
+                    {{ c.name }}</a>
+                </div>
+            {% endfor %}
+    </div>
+    
+    <div class = "columnDivider"></div>
+    
+    <div class ="colCat">
+        <h1> {{cat_name}} Items </h1><h2>({{items|length}}
+        {% if items|length > 1 %} items {% else %} item {% endif %})</h2>
+                {% for i in items %}
+                <div class = "item">
+                    <a href ="{{url_for('showItem', category_name =
+                        i.category_name, item_name = i.name)}}">{{ i.name }}</a>
+                </div>
+                {% endfor %}
+    </div>
+</div>
+{% endblock %}
