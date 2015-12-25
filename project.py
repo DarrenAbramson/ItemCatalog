@@ -246,6 +246,16 @@ def editItem(item_name):
     item = session.query(Item).filter_by(
                 name=item_name).one()
     cats = session.query(Category)
+    if 'username' in login_session:
+        if item.user_id != login_session['user_id']:
+            flash('Only the creators of items can edit them.')
+            return render_template('publicitem.html', item=item)
+    else:
+        flash('You must be logged in to edit items.')
+        return render_template('publicitem.html', item=item)
+    # Given the above code (added after Udacity review),
+    # no POST edits should be possible, even via REST client,
+    # if the user is not logged in and the owner of the item to be edited.
     if request.method=='POST':
         # Since category is a drop down, it will be selected.
         # In case name and description are blank, they won't be edited.
