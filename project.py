@@ -14,6 +14,16 @@ from flask import make_response
 import requests
 import dicttoxml
 from xml.dom.minidom import parseString
+from functools import wraps
+from flask import g
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if login_session.get('credentials') is None:
+            return redirect(url_for('showCatsAndItems'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 app = Flask(__name__)
 
@@ -244,7 +254,7 @@ def showItem(category_name, item_name):
 @app.route('/catalog/<string:item_name>/edit/', methods=['GET', 'POST'])
 def editItem(item_name):
     item = session.query(Item).filter_by(
-                name=item_name).one()
+                name = item_name).one()
     cats = session.query(Category)
     if 'username' in login_session:
         if item.user_id != login_session['user_id']:
@@ -256,7 +266,7 @@ def editItem(item_name):
     # Given the above code (added after Udacity review),
     # no POST edits should be possible, even via REST client,
     # if the user is not logged in and the owner of the item to be edited.
-    if request.method=='POST':
+    if request.method == 'POST':
         # Since category is a drop down, it will be selected.
         # In case name and description are blank, they won't be edited.
         if request.form['name']:
@@ -332,9 +342,14 @@ def catExists(someCat):
 
 # Route for deleting items.
 @app.route('/catalog/<string:item_name>/delete/', methods=['GET', 'POST'])
+@login_required
 def deleteItem(item_name):
     itemToDelete = session.query(Item).filter_by(name=item_name).one()
-    if request.method == 'POST':
+    cats = session.query(Category)
+    if itemToDelete.user_id != login_session['user_id']:
+        flash('Only the creators of items can delete them.')
+        return render_template('publicitem.html', item=itemToDelete)
+    elif request.method == 'POST':
         category_name = itemToDelete.category_name
         shrinkingCat = session.query(Category).filter_by(name
                                                          = category_name).all()
